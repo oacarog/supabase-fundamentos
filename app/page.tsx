@@ -36,7 +36,13 @@ function HeartIcon({ filled }: { filled: boolean }) {
   );
 }
 
-function PostCard({ post, onLike }: { post: Post; onLike: (id: number | string) => void }) {
+function PostCard({
+  post,
+  onLike,
+}: {
+  post: Post;
+  onLike: (id: number | string) => void;
+}) {
   return (
     <article className="bg-card-bg border border-border rounded-xl overflow-hidden shadow-sm">
       {/* Header con usuario y avatar */}
@@ -50,8 +56,12 @@ function PostCard({ post, onLike }: { post: Post; onLike: (id: number | string) 
           />
         </div>
         <div className="flex flex-col">
-          <span className="font-semibold text-foreground">{post.user.username}</span>
-          <span className="text-xs text-foreground/50">{getTimeAgo(post.created_at)}</span>
+          <span className="font-semibold text-foreground">
+            {post.user.username}
+          </span>
+          <span className="text-xs text-foreground/50">
+            {getTimeAgo(post.created_at)}
+          </span>
         </div>
       </div>
 
