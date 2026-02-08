@@ -64,7 +64,7 @@ export default function CreatePage() {
 
     // 4️⃣ Crear el post en la tabla posts_new
     const { data: postData, error: postError } = await supabase
-      .from("posts_new")
+      .from("posts")
       .insert({
         user_id: userId,
         image_url: publicUrl,
@@ -140,6 +140,7 @@ export default function CreatePage() {
                   src={imagePreview}
                   alt="Preview"
                   fill
+                  sizes="(max-width: 768px) 100vw, 520px"
                   className="object-cover"
                 />
                 <button

@@ -62,9 +62,10 @@ function Modal({
         <div className="flex items-center gap-3 p-4 border-b border-border">
           <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary">
             <Image
-              src={post.user?.avatar || "https://xynshcnkxdliapebmyaz.supabase.co/storage/v1/object/public/images/posts/unnamed-14.jpg"}
+              src={post.user?.avatar || "https://vepzopmfjmhnqvkghxur.supabase.co/storage/v1/object/public/images/posts/carro1.jpg"}
               alt={post.user?.username || "default_user"}
               fill
+              sizes="(max-width: 768px) 100vw, 520px"
               className="object-cover"
             />
           </div>
@@ -80,6 +81,7 @@ function Modal({
             src={post.image_url}
             alt={`Post de ${post.user?.username || "default_user"}`}
             fill
+            sizes="(max-width: 768px) 100vw, 520px"
             className="object-cover"
           />
         </div>
@@ -110,17 +112,17 @@ export default function RankPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data, error } = await supabase
-        .from("posts_new")
+        .from("posts")
         .select("id, image_url, caption, likes, user_id, created_at")
-        .gt("likes", 5)
         .order("likes", { ascending: false })
 
-      if (error) {
+        if (error) {
         console.error("Error al obtener los posts:", error);
       } else {
         console.log("Posts obtenidos:", data);
-        setPosts(data);
+       
       }
+      setPosts(data || []);
     };
 
     fetchPosts();
@@ -150,6 +152,7 @@ export default function RankPage() {
                 src={post.image_url}
                 alt={`Post con ${post.likes} likes`}
                 fill
+                sizes="(max-width: 768px) 100vw, 520px"
                 className="object-cover transition-transform group-hover:scale-105"
               />
               {/* Overlay con likes al hover */}
